@@ -1,0 +1,7 @@
+#!/bin/bash
+
+python generate_koopman_8_predictions_all.py
+python generate_linear_predictions_all.py
+python generate_gp_predictions_all.py
+python generate_koopman_8_ori_predictions_all.py
+python generate_koopman_8_adapt_predictions_all.py
