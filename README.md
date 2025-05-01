@@ -1,2 +1,2 @@
 # Koopy
-Unofficial implementation of Koopy.
+Official implementation of Koopy.
