@@ -1,7 +1,7 @@
 import os
 import re
 import numpy as np
-from models.linear_predictor_fix_prob import LinearPredictor
+from ..models.linear_predictor import LinearPredictor
 
 def main():
     prediction_len = 12

@@ -4,12 +4,12 @@ import os
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle, Circle
 # from adaptive_cp import AdaptiveConformalPredictionModule
-from cp.adaptive_cp import AdaptiveConformalPredictionModule
-from score_functions import stepwise_displacement_error
-from visualization_utils import draw_map2, visualize_cp_result, visualize_tracking_result, visualize_prediction_result, visualize_controller_info
-from env import Environment
+from ..cp.adaptive_cp import AdaptiveConformalPredictionModule
+from ..utils.score_functions import stepwise_displacement_error
+from ..utils.visualization_utils import draw_map2, visualize_cp_result, visualize_tracking_result, visualize_prediction_result, visualize_controller_info
+from ..env import Environment
 # from control.sampling_based_mpc import SamplingBasedMPC
-from control.grid_solver import GridMPC
+from ..control.grid_solver import GridMPC
 from PIL import Image
 from scipy import ndimage
 import cv2
@@ -42,7 +42,7 @@ def main(model, cp, n_pedestrians, test_dirpath, goal_x, goal_y, init_x, init_y,
     else:
         raise ValueError('invalid type of conformal prediction; have to choose from split & adaptive')
 
-    stat_dir = './CP_stats'
+    stat_dir = '../CP_stats'
     os.makedirs(stat_dir, exist_ok=True)
 
     dt = 0.1
@@ -136,9 +136,6 @@ def main(model, cp, n_pedestrians, test_dirpath, goal_x, goal_y, init_x, init_y,
                 prediction_true_res = {
                     i: test_set_y[t_step, :, i] for i in valid_pedestrians
                 }
-                print(valid_pedestrians)
-                print(prediction_res[6])
-                input()
                 # Update the conformal prediction module
                 confidence_intervals = cp_module.update(tracking_res, prediction_res)
 
@@ -231,7 +228,7 @@ def main(model, cp, n_pedestrians, test_dirpath, goal_x, goal_y, init_x, init_y,
             print(f"  Collision count: {collision_count}")
             print(f"  Total steps: {total_steps}")
 
-            video_root_dir = './videos'
+            video_root_dir = '../videos'
             video_dir = os.path.join(video_root_dir, name, '{}_{}'.format(model, cp))
             os.makedirs(video_dir, exist_ok=True)
             image_list = []
@@ -302,7 +299,7 @@ if __name__ == '__main__':
     parser.add_argument('--model', default='linear')
     parser.add_argument('--cp', default='adaptive')
     models = ['koopman']
-    test_dirpaths = ['lobby3/test']
+    test_dirpaths = ['../lobby3/test']
     map_sizes=[[15,15,0,0]]
     n_pedestrian=[204]
     goal_x=[14]

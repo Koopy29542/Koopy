@@ -20,5 +20,5 @@ def organize_by_code(base_dir):
                 break
 
 if __name__ == "__main__":
-    base_directory = "/lobby2/univ/test"
+    base_directory = "../lobby2/univ/test"
     organize_by_code(base_directory)

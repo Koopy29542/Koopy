@@ -1,7 +1,7 @@
 import os
 import re
 import numpy as np
-from models.linear_predictor import LinearPredictor
+from ..models.linear_predictor import LinearPredictor
 
 from function import mathismathing
 

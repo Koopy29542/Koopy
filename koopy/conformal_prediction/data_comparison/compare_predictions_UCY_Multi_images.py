@@ -4,12 +4,12 @@ import os
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle, Circle
 
-from adaptive_cp import AdaptiveConformalPredictionModule
-from score_functions import stepwise_displacement_error
-from visualization_utils import draw_map3
+from ..utils.adaptive_cp import AdaptiveConformalPredictionModule
+from ..utils.score_functions import stepwise_displacement_error
+from ..utils.visualization_utils import draw_map3
 import cv2
 import multiprocessing
-video_dir = './images/compare/test'
+video_dir = '../images/compare/test'
 def datasaver(test_dirpath,n_pedestrians,map_size,bg_img_path):
 
     #models = ['linear', 'trajectron', 'eigen', 'koopman']
@@ -92,20 +92,20 @@ def main():
 
     n_pedestrian=[367,415,434,420,148,204]
     images = [
-    "ethucyimages/eth.png",
-    "ethucyimages/students_003.jpg",
-    "ethucyimages/students_003.jpg",
-    "ethucyimages/hotel.png",
-    "ethucyimages/crowds_zara01.jpg",
-    "ethucyimages/crowds_zara02.jpg"
+    "../ethucyimages/eth.png",
+    "../ethucyimages/students_003.jpg",
+    "../ethucyimages/students_003.jpg",
+    "../ethucyimages/hotel.png",
+    "../ethucyimages/crowds_zara01.jpg",
+    "../ethucyimages/crowds_zara02.jpg"
 ]
     test_dirpaths =[
-        'lobby2/biwi_eth/test',
-        'lobby2/univ/test/001',
-        'lobby2/univ/test/003',
-        'lobby2/biwi_hotel/test',
-        'lobby2/crowds_zara01/test',
-        'lobby2/crowds_zara02/test'
+        '../lobby2/biwi_eth/test',
+        '../lobby2/univ/test/001',
+        '../lobby2/univ/test/003',
+        '../lobby2/biwi_hotel/test',
+        '../lobby2/crowds_zara01/test',
+        '../lobby2/crowds_zara02/test'
     ]
     map_sizes = [
         [18.42, 17.21, -8.69, -6.17],

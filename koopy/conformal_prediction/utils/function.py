@@ -1,7 +1,7 @@
 import os
 import re
 import numpy as np
-from models.linear_predictor import LinearPredictor
+from ..models.linear_predictor import LinearPredictor
 
 
 def mathismathing(prediction_model,prediction_len = 12,history_len = 8,pattern = r'biwi_eth.npy$',directory='./lobby2/biwi_eth',namer='_linear_predictions.npy'):

@@ -1,7 +1,7 @@
 import os
 import re
 import numpy as np
-from models.koopy_justmul import KoopmanPredictor
+from ..models.koopy_justmul import KoopmanPredictor
 
 
 def main():

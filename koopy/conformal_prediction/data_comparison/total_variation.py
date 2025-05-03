@@ -2,7 +2,7 @@ import numpy as np
 import os
 
 # 디렉토리 경로 지정
-dir_path = '/home/snowhan1021/jungjin/conformal_prediction/lobby3/test'
+dir_path = '../lobby3/test'
 
 # .npy 파일만 추출
 npy_files = sorted([f for f in os.listdir(dir_path) if f.endswith('.npy')])

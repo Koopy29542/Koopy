@@ -1,7 +1,7 @@
 import os
 import re
 import numpy as np
-from models.gp_predictor import GaussianProcessPredictor
+from ..models.gp_predictor import GaussianProcessPredictor
 
 
 def main():

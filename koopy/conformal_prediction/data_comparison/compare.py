@@ -53,7 +53,7 @@ def compute_ADE_FDE(predictions, targets):
 
 
 if __name__ == "__main__":
-    test_dirpaths = ['./lobby2/biwi_eth/test','./lobby2/univ/test','./lobby2/univ/test','./lobby2/biwi_hotel/test','./lobby2/crowds_zara01/test','./lobby2/crowds_zara02/test']
+    test_dirpaths = ['../lobby2/biwi_eth/test','../lobby2/univ/test','../lobby2/univ/test','../lobby2/biwi_hotel/test','../lobby2/crowds_zara01/test','../lobby2/crowds_zara02/test']
     directories=  ['biwi_eth','students003','students001','biwi_hotel','crowds_zara01','crowds_zara02']
 
     for i ,j in zip(test_dirpaths,directories):

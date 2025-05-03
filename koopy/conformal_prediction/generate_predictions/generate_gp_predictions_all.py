@@ -1,8 +1,8 @@
 import os
 import re
 import numpy as np
-from models.gp_predictor import GaussianProcessPredictor
-from function import mathismathing
+from ..models.gp_predictor import GaussianProcessPredictor
+from ..utils.function import mathismathing
 
 def main():
     prediction_len = 12

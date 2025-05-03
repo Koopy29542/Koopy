@@ -1,7 +1,7 @@
 import os
 import re
 import numpy as np
-from models.koopman_clu_geo import KoopmanPredictor
+from ..models.koopman_clu_geo import KoopmanPredictor
 
 
 def main():
