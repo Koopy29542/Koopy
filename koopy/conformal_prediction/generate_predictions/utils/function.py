@@ -55,23 +55,5 @@ def mathismathing(prediction_model,prediction_len = 12,history_len = 8,pattern =
                             predictions=np.reshape(all_fde,(len(agent_xy),prediction_len,1,2))
                     print(filepath_to_save_predictions)
                     print(predictions.shape)
-                    if "zara02" in directory:
-                        arr3d = predictions[112] 
-                        for j in range(arr3d.shape[1]):
-                            block = arr3d[:, j, :]
-                            if not np.isnan(block).any():
-                                print(f"Index {j} (clean):\n{block}\n")
-                    if "zara02" in directory:
-                        arr3d = predictions[113] 
-                        for j in range(arr3d.shape[1]):
-                            block = arr3d[:, j, :]
-                            if not np.isnan(block).any():
-                                print(f"Index {j} (clean):\n{block}\n")
-                    if "zara02" in directory:
-                        arr3d = predictions[114] 
-                        for j in range(arr3d.shape[1]):
-                            block = arr3d[:, j, :]
-                            if not np.isnan(block).any():
-                                print(f"Index {j} (clean):\n{block}\n")
                     np.save(filepath_to_save_predictions,  predictions)     # shape = (# effective time steps, prediction length, # pedestrians, 2)
     return

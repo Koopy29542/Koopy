@@ -254,7 +254,7 @@ def main(model, cp, n_pedestrians, test_dirpath, goal_x, goal_y, init_x, init_y,
                 buffer_tracking_res.append(tracking_res)
 
             # 영상 파일 생성
-            video_root_dir = './paperimage'
+            video_root_dir = '../paperimage'
             video_dir = os.path.join(video_root_dir, name, '{}_{}'.format(model, cp))
             os.makedirs(video_dir, exist_ok=True)
             image_list = []

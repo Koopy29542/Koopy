@@ -21,9 +21,10 @@ def organize_by_code(base_dir):
                 # make sure the subfolder exists
                 os.makedirs(dest_dir, exist_ok=True)
                 dest_path = os.path.join(dest_dir, fname)
-                shutil.move(src_path, dest_path)
-                print(f"Moved {fname} → {code}/")
-                break  # stop checking other codes once moved
+                # copy instead of move
+                shutil.copy2(src_path, dest_path)
+                print(f"Copied {fname} → {code}/")
+                break  # stop checking other codes once copied
 
 if __name__ == "__main__":
     base_directory = "../lobby2/univ/test"
