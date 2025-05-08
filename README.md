@@ -8,6 +8,7 @@ Clone the repo:
 ```bash
 git clone https://github.com/Koopy29542/Koopy.git
 cd Koopy
+git checkout CORL
 pip install -r requirements.txt
 ```
 
