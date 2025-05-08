@@ -11,7 +11,7 @@ cd Koopy
 pip install -r requirements.txt
 ```
 
-The original datasets generated during our experimentations have been uploaded to here:[Drive](https://drive.google.com/file/d/1HvLqsX4YWHW1jplOqJwZSbFtcbqBBnhw/view?usp=sharing). Please replace the lobby2 and lobby3 folders within the koopy folder when utilizing these datasets. It is neccesary to utilize these datasets for the comparison with the Trajectron++ and EigenTrajectory algorithms for the comparisons done in the compare_predictions folder mentioned below. 
+The original datasets generated during our experimentations have been uploaded to here:[Drive](https://drive.google.com/file/d/1HvLqsX4YWHW1jplOqJwZSbFtcbqBBnhw/view?usp=sharing). Please replace the lobby2 and lobby3 folders within the koopy folder when utilizing these datasets. It is neccesary to utilize these datasets for the comparisons done in the compare_predictions folder mentioned below with the Trajectron++ and EigenTrajectory algorithms. 
 
 We have placed the necessary data generation methods for the linear, gp, and Koopman methods within the koopy/conformal_prediction/generate_predictions folder. For easy use, please run the following code:
 ```
