@@ -40,8 +40,6 @@ def mathismathing(prediction_model,prediction_len = 12,history_len = 8,pattern =
                                 history_idx = valid_idx[start_idx:start_idx + history_len]  
                                 future_idx = valid_idx[start_idx+history_len:start_idx+history_len+prediction_len]  
                                 output_t =prediction_model({pedestrian:agent_xy[history_idx,pedestrian] for pedestrian in range(1)})
-                                if agent_id==18 and "zara02" in directory:
-                                    print({pedestrian:agent_xy[history_idx,pedestrian] for pedestrian in range(1)})
                                 output_t=np.array(list(output_t.values())).reshape(12,1,2)
                                 all_fde.append(output_t)
                             for start_idx in range(valid_idx[-1],len(agent_xy)):
