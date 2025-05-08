@@ -1,17 +1,17 @@
 import os
 import re
 import numpy as np
-from ..models.gp_predictor import GaussianProcessPredictor
-from ..utils.function import mathismathing
+from models.gp_predictor import GaussianProcessPredictor
+from utils.function import mathismathing
 
 def main():
     prediction_len = 12
     history_len = 8
 
-    dt = 0.1
+    dt = 0.4
 
     pattern = [r'biwi_eth.npy$',r'^.*\d{3}\.npy$',r'biwi_hotel.npy$',r'^.*\d{2}\.npy$',r'^.*\d{2}\.npy$']
-    directories=  ['lobby2/biwi_eth','lobby2/univ','lobby2/biwi_hotel','lobby2/crowds_zara01','lobby2/crowds_zara02']
+    directories=  ['../lobby2/biwi_eth','../lobby2/univ','../lobby2/biwi_hotel','../lobby2/crowds_zara01','../lobby2/crowds_zara02']
 
     # model
     for k,i in zip(pattern,directories):

@@ -5,8 +5,9 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon, Rectangle, Circle
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 from cp.adaptive_cp import AdaptiveConformalPredictionModule
-from score_functions import stepwise_displacement_error
-from visualization_utils import draw_map3, visualize_cp_result2, visualize_tracking_result, visualize_prediction_result, visualize_controller_info
+from utils.score_functions import stepwise_displacement_error
+from utils.visualization_utils import draw_map3, visualize_cp_result2, visualize_tracking_result, visualize_prediction_result, visualize_controller_info
+
 from env import Environment
 from control.grid_solver import GridMPC
 from PIL import Image
@@ -161,12 +162,12 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     test_dirs = [
-        'lobby2/biwi_eth/test',
-        'lobby2/univ/test/001',
-        'lobby2/univ/test/003',
-        'lobby2/biwi_hotel/test',
-        'lobby2/crowds_zara01/test',
-        'lobby2/crowds_zara02/test'
+        '../lobby2/biwi_eth/test',
+        '../lobby2/univ/test/001',
+        '../lobby2/univ/test/003',
+        '../lobby2/biwi_hotel/test',
+        '../lobby2/crowds_zara01/test',
+        '../lobby2/crowds_zara02/test'
     ]
     map_sizes = [
         [18.42, 17.21, -8.69, -6.17],
@@ -178,13 +179,13 @@ if __name__ == '__main__':
     ]
     n_peds = [367, 415, 434, 420, 148, 204]
     bg_imgs = [
-        "ethucyimages/eth.png",
-        "ethucyimages/students_003.jpg",
-        "ethucyimages/students_003.jpg",
-        "ethucyimages/hotel.png",
-        "ethucyimages/crowds_zara01.jpg",
-        "ethucyimages/crowds_zara02.jpg"
-    ]
+    "../ethucyimages/eth.png",
+    "../ethucyimages/students_003.jpg",
+    "../ethucyimages/students_003.jpg",
+    "../ethucyimages/hotel.png",
+    "../ethucyimages/crowds_zara01.jpg",
+    "../ethucyimages/crowds_zara02.jpg"
+]
 
     for td, n, ms, bg in zip(test_dirs, n_peds, map_sizes, bg_imgs):
         main(

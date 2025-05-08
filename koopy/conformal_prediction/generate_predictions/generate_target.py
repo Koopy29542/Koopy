@@ -1,7 +1,7 @@
 import os
 import re
 import numpy as np
-from ..models.koopman_clu_geo import KoopmanPredictor
+from models.koopman_clu_geo import KoopmanPredictor
 
 
 def main():
@@ -10,8 +10,8 @@ def main():
 
 
     pattern = [r'biwi_eth.npy$',r'students001.npy$',r'students003.npy$',r'biwi_hotel.npy$',r'^.*\d{2}\.npy$',r'^.*\d{2}\.npy$']
-    directories=  ['lobby2/biwi_eth','lobby2/univ','lobby2/univ','lobby2/biwi_hotel','lobby2/crowds_zara01','lobby2/crowds_zara02']
-    test_dirpaths = ['lobby2/biwi_eth/test','lobby2/univ/test','lobby2/univ/test','lobby2/biwi_hotel/test','lobby2/crowds_zara01/test','lobby2/crowds_zara02/test']
+    directories=  ['../lobby2/biwi_eth','../lobby2/univ','../lobby2/univ','../lobby2/biwi_hotel','../lobby2/crowds_zara01','../lobby2/crowds_zara02']
+    test_dirpaths = ['../lobby2/biwi_eth/test','../lobby2/univ/test','../lobby2/univ/test','../lobby2/biwi_hotel/test','../lobby2/crowds_zara01/test','../lobby2/crowds_zara02/test']
     for i,k,j in zip(pattern,directories,test_dirpaths):
     # model
         for type in ['test']:

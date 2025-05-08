@@ -4,88 +4,90 @@ import os
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle, Circle
 
-from ..utils.adaptive_cp import AdaptiveConformalPredictionModule
-from ..utils.score_functions import stepwise_displacement_error
-from ..utils.visualization_utils import draw_map3
+from utils.adaptive_cp import AdaptiveConformalPredictionModule
+from utils.score_functions import stepwise_displacement_error
+from utils.visualization_utils import draw_map3
 import cv2
 import multiprocessing
-video_dir = '../images/compare/test'
-def datasaver(test_dirpath,n_pedestrians,map_size,bg_img_path):
 
-    #models = ['linear', 'trajectron', 'eigen', 'koopman']
-    models = ['linear', 'gp', 'eigen', 'koopman_clu_geo','koopman_clu_vel','koopman_enc', 'trajectron']
-    colors = [ 'red','violet','green', 'brown','blue','grey','pink']
-    #labels = ['Linear', 'Trajectron++', 'EigenTrajectory + STGCNN', 'Koopman']
-    #labels = ['Linear', 'GP','EigenTrajectory + STGCNN','Koopman+ 8 history','Trajectron++','Trajectron++ 20']
+video_dir = '../videos/compare/test'
 
-
+def datasaver(test_dirpath, n_pedestrians, map_size, bg_img_path):
+    models = ['linear', 'gp', 'eigen','mul' , 'trajectron']
+    colors = [ 'brown','violet','green', 'red','blue']
 
     for file in os.listdir(test_dirpath):
-        if file.endswith('.txt'):
-            name, _ = os.path.splitext(file)
-            scenario_dir = os.path.join(video_dir, name)
-            os.makedirs(scenario_dir, exist_ok=True)
+        if not file.endswith('.txt'):
+            continue
 
-            test_set_y = np.load(os.path.join(test_dirpath, name + '_targets.npy'))
-            # test_set_y = test_set_y
+        name, _ = os.path.splitext(file)
+        scenario_dir = os.path.join(video_dir, name)
+        os.makedirs(scenario_dir, exist_ok=True)
 
-            test_set_y_model_dict = {}
+        # --- setup video writer ---
+        video_path = os.path.join(scenario_dir, f"{name}.mp4")
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        fps = 10
+        frame_size = (800, 800)
+        writer = cv2.VideoWriter(video_path, fourcc, fps, frame_size)
 
-            for model in models:
-                test_set_y_model_dict[model] = np.load(os.path.join(test_dirpath, name + '_{}_predictions.npy'.format(model)))
-            image_list=[]
-            for t, y in enumerate(test_set_y[:200]):
+        # load ground truth and all model predictions
+        test_set_y = np.load(os.path.join(test_dirpath, name + '_targets.npy'))
+        test_set_y_model_dict = {
+            model: np.load(os.path.join(test_dirpath, f"{name}_{model}_predictions.npy"))
+            for model in models
+        }
 
-                plt.clf(), plt.cla()
-                fig, ax,_,_ = draw_map3(*map_size,bg_img_path=bg_img_path)
-                valid_js = []
-                for j in range(n_pedestrians):
-                    # check ground truth
+        for t, y in enumerate(test_set_y[:200]):
+            # redraw figure
+            plt.clf(); plt.cla()
+            fig, ax, _, _ = draw_map3(*map_size, bg_img_path=bg_img_path)
 
-                    # check *all* models
-                    ok = True
-                    for model in models:
-                        y_model = test_set_y_model_dict[model][t]
-                        if np.isnan(y_model[:12, j, :2]).any():
-                            ok = False
-                            break
+            # find valid pedestrian indices
+            valid_js = []
+            for j in range(n_pedestrians):
+                if all(not np.isnan(test_set_y_model_dict[m][t][:12, j, :2]).any() for m in models):
+                    valid_js.append(j)
+            valid_js = valid_js[:4]
 
-                    if ok:
-                        valid_js.append(j)
+            # plot ground truth
+            for rank, j in enumerate(valid_js):
+                ax.scatter(y[0, j, 0], y[0, j, 1], color='k', s=50, zorder=300)
+                ax.plot(y[:, j, 0], y[:, j, 1], color='k', zorder=300,
+                        label='True' if rank == 0 else None)
 
-                # 2) optionally cap at 4 pedestrians
-                valid_js = valid_js[:4]
+            # plot model predictions
+            for i, model in enumerate(models):
+                color = colors[i]
+                y_model = test_set_y_model_dict[model][t]
+                for j in valid_js:
+                    ax.plot(y_model[:, j, 0],
+                            y_model[:, j, 1],
+                            color=color,
+                            zorder=300)
 
-                # 3) plot ground truth only for those valid_js
-                for rank, j in enumerate(valid_js):
-                    ax.scatter(y[0, j, 0], y[0, j, 1], color='k', s=50, zorder=300)
-                    if j == valid_js[0]:
-                        ax.plot(y[:, j, 0], y[:, j, 1], color='k', zorder=300, label='True')
-                    else:
-                        ax.plot(y[:, j, 0], y[:, j, 1], color='k', zorder=300)
+            # render to image
+            fig.canvas.draw()
+            img = np.array(fig.canvas.renderer.buffer_rgba())
+            raw_bbox = ax.get_window_extent()
+            x0, y0, x1, y1 = map(int, raw_bbox.extents)
+            h = img.shape[0]
+            crop = img[h - y1 : h - y0, x0 : x1]
+            bgr = cv2.cvtColor(crop, cv2.COLOR_RGBA2BGR)
+            frame = cv2.resize(bgr, frame_size)
 
-                ax.legend(loc='upper right')
+            # write to video
+            writer.write(frame)
 
-                ax.set_title('test scenario {}'.format(name))
-                fig.canvas.draw()
-                image = np.array(fig.canvas.renderer.buffer_rgba())  # Get image array from figure
-                image = cv2.cvtColor(image, cv2.COLOR_RGBA2BGR)  # Convert RGBA to BGR for OpenCV
-                image_list.append(image)
-                plt.close(fig)
-            video_path = os.path.join(video_dir, 'test_scenario_{}_{}.mp4'.format(name,n_pedestrians))
-            if image_list:
-                height, width, _ = image_list[0].shape
-                fps = 10  # Set FPS (frames per second)
-                fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Codec for MP4 format
-                video_writer = cv2.VideoWriter(video_path, fourcc, fps, (width, height))
-                for img in image_list:
-                    video_writer.write(img)
-                video_writer.release()
-                cv2.destroyAllWindows()
+            plt.close(fig)
+
+        writer.release()
+        print(f"Saved video for scenario {name} → {video_path}")
+
     return
-def main():
 
-    n_pedestrian=[367,415,434,420,148,204]
+def main():
+    n_pedestrian = [367,415,434,420,148,204]
     images = [
     "../ethucyimages/eth.png",
     "../ethucyimages/students_003.jpg",
@@ -112,14 +114,9 @@ def main():
     ]
 
     os.makedirs(video_dir, exist_ok=True)
-    
-    num_processes=len(test_dirpaths)
+    num_processes = len(test_dirpaths)
     with multiprocessing.Pool(processes=num_processes) as pool:
-        results = pool.starmap(datasaver, list(zip(test_dirpaths,n_pedestrian,map_sizes,images))) 
-    # visualization
-
-    return
-
+        pool.starmap(datasaver, zip(test_dirpaths, n_pedestrian, map_sizes, images))
 
 if __name__ == '__main__':
     main()

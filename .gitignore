@@ -3,16 +3,3 @@ koopy/conformal_prediction/lobby3/
 koopy/conformal_prediction/videos/
 koopy/conformal_prediction/data_comparison/videoimage/
 koopy/conformal_prediction/data_comparison/paperimage/
-
-!koopy/conformal_prediction/lobby2/**/*eigen_predictions*.npy
-
-!koopy/conformal_prediction/lobby2/**/*trajectron_predictions*.npy
-
-!koopy/conformal_prediction/lobby2/**/*trajectron_20_predictions*.npy
-
-
-!koopy/conformal_prediction/lobby3/**/*eigen_predictions*.npy
-
-!koopy/conformal_prediction/lobby3/**/*trajectron_predictions*.npy
-
-!koopy/conformal_prediction/lobby3/**/*trajectron_20_predictions*.npy

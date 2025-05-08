@@ -346,13 +346,13 @@ if __name__ == '__main__':
     parser.add_argument('--model', default='linear')
     parser.add_argument('--cp', default='adaptive')
     models = ['linear', 'mul','koopman_clu_geo', 'trajectron', 'eigen','gp']
-    test_dirpaths = [
-        'lobby2/biwi_eth/test',
-        'lobby2/univ/test/001',
-        'lobby2/univ/test/003',
-        'lobby2/biwi_hotel/test',
-        'lobby2/crowds_zara01/test',
-        'lobby2/crowds_zara02/test'
+    test_dirpaths =[
+        '../lobby2/biwi_eth/test',
+        '../lobby2/univ/test/001',
+        '../lobby2/univ/test/003',
+        '../lobby2/biwi_hotel/test',
+        '../lobby2/crowds_zara01/test',
+        '../lobby2/crowds_zara02/test'
     ]
     map_sizes = [ # x max, y max, x min, y min
         [25, 20, -5, -10],

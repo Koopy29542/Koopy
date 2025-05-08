@@ -58,7 +58,7 @@ if __name__ == "__main__":
 
     for i ,j in zip(test_dirpaths,directories):
         directory = i
-    
+
         # 타겟 데이터 로드
         target_file = os.path.join(directory, j+"_targets.npy")
         targets = np.load(target_file)  # shape: (876, 12, 44, 2)

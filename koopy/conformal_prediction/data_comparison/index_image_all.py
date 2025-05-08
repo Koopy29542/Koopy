@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon, Rectangle, Circle
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 from cp.adaptive_cp import AdaptiveConformalPredictionModule
-from score_functions import stepwise_displacement_error
-from visualization_utils import draw_map3, visualize_cp_result2, visualize_tracking_result, visualize_prediction_result, visualize_controller_info
+from utils.score_functions import stepwise_displacement_error
+from utils.visualization_utils import draw_map3, visualize_cp_result2, visualize_tracking_result, visualize_prediction_result, visualize_controller_info
 from env import Environment
 from control.grid_solver import GridMPC
 from PIL import Image
@@ -316,24 +316,23 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', default='linear')
     parser.add_argument('--cp', default='adaptive')
-    models = ['linear', 'gp', 'eigen', 'koopman_clu_geo','koopman_clu_vel','koopman_enc', 'trajectron']
-    test_dirpaths = [
-        'lobby2/biwi_eth/test',
-        'lobby2/univ/test/001',
-        'lobby2/univ/test/003',
-        'lobby2/biwi_hotel/test',
-        'lobby2/crowds_zara01/test',
-        'lobby2/crowds_zara02/test'
-    ]
+    models = ['linear', 'gp', 'eigen', 'mul', 'trajectron']
     images = [
-    "ethucyimages/eth.png",
-    "ethucyimages/students_003.jpg",
-    "ethucyimages/students_003.jpg",
-    "ethucyimages/hotel.png",
-    "ethucyimages/crowds_zara01.jpg",
-    "ethucyimages/crowds_zara02.jpg"
+    "../ethucyimages/eth.png",
+    "../ethucyimages/students_003.jpg",
+    "../ethucyimages/students_003.jpg",
+    "../ethucyimages/hotel.png",
+    "../ethucyimages/crowds_zara01.jpg",
+    "../ethucyimages/crowds_zara02.jpg"
 ]
-    
+    test_dirpaths =[
+        '../lobby2/biwi_eth/test',
+        '../lobby2/univ/test/001',
+        '../lobby2/univ/test/003',
+        '../lobby2/biwi_hotel/test',
+        '../lobby2/crowds_zara01/test',
+        '../lobby2/crowds_zara02/test'
+    ]
     """map_sizes = [
     # [x_max, y_max, x_min, y_min]
     # Eth

@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle, Circle
 # from adaptive_cp import AdaptiveConformalPredictionModule
 from cp.adaptive_cp import AdaptiveConformalPredictionModule
-from score_functions import stepwise_displacement_error
-from visualization_utils import draw_map2, visualize_cp_result, visualize_tracking_result, visualize_prediction_result, visualize_controller_info
+from utils.score_functions import stepwise_displacement_error
+from utils.visualization_utils import draw_map2, visualize_cp_result, visualize_tracking_result, visualize_prediction_result, visualize_controller_info
 from env import Environment
 # from control.sampling_based_mpc import SamplingBasedMPC
 from control.grid_solver import GridMPC
@@ -237,8 +237,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', default='linear')
     parser.add_argument('--cp', default='adaptive')
-    models = ['linear','gp', 'eigen','koopman_8','trajectron']
-    test_dirpaths = ['lobby2/biwi_eth/test','lobby2/univ/test/001','lobby2/univ/test/003','lobby2/biwi_hotel/test','lobby2/crowds_zara01/test','lobby2/crowds_zara02/test']
+    models = ['linear','gp', 'eigen','mul','trajectron']
+    test_dirpaths = ['../lobby2/biwi_eth/test','../lobby2/univ/test/001','../lobby2/univ/test/003','../lobby2/biwi_hotel/test','../lobby2/crowds_zara01/test','../lobby2/crowds_zara02/test']
     map_sizes=[[60,40,-60,-40],[15,15,-1,-1],[15,15,-1,-1],[30,30,-30,-30],[15,15,0,0],[15,15,0,0]]
     n_pedestrian=[367,415,434,420,148,204]
     goal_x=[40,14,30,14,14]

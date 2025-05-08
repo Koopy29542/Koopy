@@ -1,7 +1,7 @@
 import os
 import re
 import numpy as np
-from ..models.koopman_predictor_clu_geo import KoopmanPredictor
+from models.koopman_predictor_clu_geo import KoopmanPredictor
 import matplotlib.pyplot as plt
 import time
 
@@ -12,13 +12,13 @@ def main():
     pattern = r'^\d+\.npy$'
 
     # model
-    prediction_model = KoopmanPredictor(prediction_len=prediction_len,data_dir='lobby3',pattern = r'^\d+\.npy$',dt = 0.1)
+    prediction_model = KoopmanPredictor(prediction_len=prediction_len,data_dir='../lobby3',pattern = r'^\d+\.npy$',dt = 0.1)
     #prediction_model.train(num_epochs=50, lr=1e-3, data_dir='lobby2/biwi_eth')
     #loaded_model = KoopmanPredictor.load_model('koopman_model_encoder_geo2.pkl')
     
 
     for type in ['test']:
-        dirpath = os.path.join('./lobby3', type)
+        dirpath = os.path.join('../lobby3', type)
         for file in os.listdir(dirpath):
             if re.match(pattern, file):
                 #filepath_to_load = os.path.join(dirpath, file)
@@ -29,16 +29,16 @@ def main():
                # time_steps, n_pedestrians, _ = data.shape
                 ##target, prediction = prediction_model.testtraj2('lobby3/test')
                 start_time = time.time()
-                target, prediction = prediction_model.testtraj2('lobby3/test')
+                target, prediction = prediction_model.testtraj2('../lobby3/test')
                 elapsed_time = time.time() - start_time
                 print(f"Elapsed time for testtraj2: {elapsed_time:.6f} seconds")
 
                 print(prediction.shape)
 
-                file_path_gp = "/home/snowhan1021/jungjin/conformal_prediction/lobby3/test/0_gp_predictions.npy"
-                file_path_traj = "/home/snowhan1021/jungjin/conformal_prediction/lobby3/test/0_trajectron_predictions.npy"
-                file_path_linear = "/home/snowhan1021/jungjin/conformal_prediction/lobby3/test/0_linear_predictions.npy"
-                file_path_eigen = "/home/snowhan1021/jungjin/conformal_prediction/lobby3/test/0_eigen_predictions.npy"
+                file_path_gp = "../lobby3/test/0_gp_predictions.npy"
+                file_path_traj = "../lobby3/test/0_trajectron_predictions.npy"
+                file_path_linear = "../lobby3/test/0_linear_predictions.npy"
+                file_path_eigen = "../lobby3/test/0_eigen_predictions.npy"
 
                 trajectron_prediction = np.load(file_path_traj)
                 gp_prediction = np.load(file_path_gp)

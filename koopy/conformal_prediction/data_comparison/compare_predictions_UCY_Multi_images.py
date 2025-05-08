@@ -4,17 +4,17 @@ import os
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle, Circle
 
-from ..utils.adaptive_cp import AdaptiveConformalPredictionModule
-from ..utils.score_functions import stepwise_displacement_error
-from ..utils.visualization_utils import draw_map3
+from utils.adaptive_cp import AdaptiveConformalPredictionModule
+from utils.score_functions import stepwise_displacement_error
+from utils.visualization_utils import draw_map3
 import cv2
 import multiprocessing
 video_dir = '../images/compare/test'
 def datasaver(test_dirpath,n_pedestrians,map_size,bg_img_path):
 
     #models = ['linear', 'trajectron', 'eigen', 'koopman']
-    models = ['linear', 'gp', 'eigen', 'koopman_clu_geo','koopman_clu_vel','koopman_enc', 'trajectron']
-    colors = [ 'red','violet','green', 'brown','blue','grey','pink']
+    models = ['linear', 'gp', 'eigen','mul' , 'trajectron']
+    colors = [ 'brown','violet','green', 'red','blue']
     #labels = ['Linear', 'Trajectron++', 'EigenTrajectory + STGCNN', 'Koopman']
     #labels = ['Linear', 'GP','EigenTrajectory + STGCNN','Koopman+ 8 history','Trajectron++','Trajectron++ 20']
 
@@ -33,7 +33,7 @@ def datasaver(test_dirpath,n_pedestrians,map_size,bg_img_path):
 
             for model in models:
                 test_set_y_model_dict[model] = np.load(os.path.join(test_dirpath, name + '_{}_predictions.npy'.format(model)))
-            for t, y in enumerate(test_set_y[:200]):
+            for t, y in enumerate(test_set_y):
 
                 plt.clf(), plt.cla()
                 fig, ax,_,_ = draw_map3(*map_size,bg_img_path=bg_img_path)

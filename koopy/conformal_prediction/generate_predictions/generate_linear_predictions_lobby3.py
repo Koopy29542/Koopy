@@ -1,7 +1,7 @@
 import os
 import re
 import numpy as np
-from ..models.linear_predictor import LinearPredictor
+from models.linear_predictor import LinearPredictor
 
 def main():
     prediction_len = 12
@@ -16,7 +16,7 @@ def main():
         dt=0.1
     )
     
-    test_dir = './lobby3/test'
+    test_dir = '../lobby3/test'
     
     for file in os.listdir(test_dir):
         if re.match(pattern, file):
