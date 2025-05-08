@@ -24,5 +24,6 @@ set -euo pipefail
 
   python generate_linear_predictions_lobby3.py
   python generate_koopman_predictions_lobby3.py
+  python generate_koopman_predictions_clu_geo_lobby3.py
 )
 

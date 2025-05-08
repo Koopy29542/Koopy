@@ -4,11 +4,11 @@ import os
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon, Rectangle, Circle
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
-from ..cp.adaptive_cp import AdaptiveConformalPredictionModule
-from ..utils.score_functions import stepwise_displacement_error
-from ..utils.visualization_utils import draw_map2, visualize_cp_result, visualize_tracking_result, visualize_prediction_result, visualize_controller_info
-from ..env import Environment
-from ..control.grid_solver import GridMPC
+from cp.adaptive_cp import AdaptiveConformalPredictionModule
+from utils.score_functions import stepwise_displacement_error
+from utils.visualization_utils import draw_map2, visualize_cp_result, visualize_tracking_result, visualize_prediction_result, visualize_controller_info
+from env import Environment
+from control.grid_solver import GridMPC
 from PIL import Image
 from scipy import ndimage
 import cv2
