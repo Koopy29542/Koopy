@@ -11,7 +11,7 @@ cd Koopy
 pip install -r requirements.txt
 ```
 
-The original datasets generated during our experimentations have been uploaded to here:[Drive](https://drive.google.com/file/d/1HvLqsX4YWHW1jplOqJwZSbFtcbqBBnhw/view?usp=sharing). Please replace the lobby2 and lobby3 folders within the koopy folder when utilizing these datasets.
+The original datasets generated during our experimentations have been uploaded to here:[Drive](https://drive.google.com/file/d/1HvLqsX4YWHW1jplOqJwZSbFtcbqBBnhw/view?usp=sharing). Please replace the lobby2 and lobby3 folders within the koopy folder when utilizing these datasets. It is neccesary to utilize these datasets for the comparison with the Trajectron++ and EigenTrajectory algorithms for the comparisons done in the compare_predictions folder mentioned below. 
 
 We have placed the necessary data generation methods for the linear, gp, and Koopman methods within the koopy/conformal_prediction/generate_predictions folder. For easy use, please run the following code:
 ```
@@ -21,21 +21,13 @@ bash ./generate_all.sh
 ```
 Comparison results utilized within the paper, including the relevant images, can be generated through the related Python files in the compare_predictions folder.
 
-
-
 *models explanation
 
 koopy: training and testing at once
 
-koopman_clu_geo.py(koopy-c): training and testing at once
-
 train_koopy.py: training koopy with Lobby datasets > generate koopy.pkl file
 koopy.pkl: encoder + Koopman matrix information saved
 koopy_predictor.py: use saved koopy.pkl file for prediction without training
-
-train_geo_clu.py
-koopman_model_clu_geo.pkl
-koopman_predictor_clu_geo.py
 
 *prediction generation
 
