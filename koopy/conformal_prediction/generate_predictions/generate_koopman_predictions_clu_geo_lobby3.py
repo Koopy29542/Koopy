@@ -32,54 +32,6 @@ def main():
                 target, prediction = prediction_model.testtraj2('../lobby3/test')
                 elapsed_time = time.time() - start_time
                 print(f"Elapsed time for testtraj2: {elapsed_time:.6f} seconds")
-
-                print(prediction.shape)
-
-                file_path_gp = "../lobby3/test/0_gp_predictions.npy"
-                file_path_traj = "../lobby3/test/0_trajectron_predictions.npy"
-                file_path_linear = "../lobby3/test/0_linear_predictions.npy"
-                file_path_eigen = "../lobby3/test/0_eigen_predictions.npy"
-                file_path_koopman= "../lobby3/test/0_koopy_predictions.npy"
-                trajectron_prediction = np.load(file_path_traj)
-                gp_prediction = np.load(file_path_gp)
-                linear_prediction = np.load(file_path_linear)
-                eigen_prediction = np.load(file_path_eigen)
-                koopy_prediction = np.load(file_path_koopman)
-
-                error_eigen = np.linalg.norm(eigen_prediction - target, axis=-1)
-                ade_eigen = np.nanmean(error_eigen)
-                fde_eigen = np.nanmean(error_eigen[:, -1, :])
-                print(f"Average Distance Error (ADE)_eigen: {ade_eigen:.4f}")
-                print(f"Final Distance Error (FDE)_eigen: {fde_eigen:.4f}")
-
-
-                error_gp = np.linalg.norm(gp_prediction - target, axis=-1)
-                ade_gp = np.nanmean(error_gp)
-                fde_gp = np.nanmean(error_gp[:, -1, :])
-                print(f"Average Distance Error (ADE)_gp: {ade_gp:.4f}")
-                print(f"Final Distance Error (FDE)_gp: {fde_gp:.4f}")
-
-                error_linear = np.linalg.norm(linear_prediction - target, axis=-1)
-                ade_linear = np.nanmean(error_linear)
-                fde_linear = np.nanmean(error_linear[:, -1, :])
-                print(f"Average Distance Error (ADE)_linear: {ade_linear:.4f}")
-                print(f"Final Distance Error (FDE)_linear: {fde_linear:.4f}")
-
-                error_tmp = np.linalg.norm(trajectron_prediction - target, axis=-1)
-                ade_tmp = np.nanmean(error_tmp)
-                fde_tmp = np.nanmean(error_tmp[:, -1, :])
-                print(f"Average Distance Error (ADE)_traj: {ade_tmp:.4f}")
-                print(f"Final Distance Error (FDE)_traj: {fde_tmp:.4f}")
-                errors = np.linalg.norm(koopy_prediction - target, axis=-1)
-                ade = np.nanmean(errors)
-                fde = np.nanmean(errors[:, -1, :])
-                print(f"Average Distance Error (ADE): {ade:.4f}")
-                print(f"Final Distance Error (FDE): {fde:.4f}")
-                errors = np.linalg.norm(prediction - target, axis=-1)
-                ade = np.nanmean(errors)
-                fde = np.nanmean(errors[:, -1, :])
-                print(f"Average Distance Error (ADE): {ade:.4f}")
-                print(f"Final Distance Error (FDE): {fde:.4f}")
    
                 np.save(filepath_to_save_predictions, prediction)      # shape = (# effective time steps, prediction length, # pedestrians, 2)
                 np.save(filepath_to_save_targets, target)
