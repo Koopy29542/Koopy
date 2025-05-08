@@ -1,0 +1,12 @@
+numpy==2.1.1
+scipy==1.15.1
+matplotlib==3.10.0
+pandas==2.2.3
+opencv-python==4.11.0.86
+Pillow==11.1.0
+torch==2.6.0
+scikit-learn==1.6.1
+pyyaml==6.0.2
+george==0.4.3
+shapely==2.0.7
+tqdm==4.67.1
