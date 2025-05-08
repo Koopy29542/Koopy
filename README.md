@@ -1,5 +1,5 @@
 # Koopy
-Official implementation of Koopy.
+Official implementation of Koopy for the CORL paper.
 Python version 3.13.
 ## Installation
 
