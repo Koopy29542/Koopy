@@ -316,7 +316,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', default='linear')
     parser.add_argument('--cp', default='adaptive')
-    models = ['linear', 'gp', 'eigen', 'mul', 'trajectron']
+    models = ['linear', 'gp', 'eigen', 'koopy', 'trajectron']
     images = [
     "../ethucyimages/eth.png",
     "../ethucyimages/students_003.jpg",

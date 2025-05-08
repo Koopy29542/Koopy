@@ -345,7 +345,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', default='linear')
     parser.add_argument('--cp', default='adaptive')
-    models = ['linear', 'mul','koopman_clu_geo', 'trajectron', 'eigen','gp']
+    models = ['linear', 'koopy', 'trajectron', 'eigen','gp']
     test_dirpaths =[
         '../lobby2/biwi_eth/test',
         '../lobby2/univ/test/001',

@@ -13,7 +13,7 @@ video_dir = '../images/compare/test'
 def datasaver(test_dirpath,n_pedestrians,map_size,bg_img_path):
 
     #models = ['linear', 'trajectron', 'eigen', 'koopman']
-    models = ['linear', 'gp', 'eigen','mul' , 'trajectron']
+    models = ['linear', 'gp', 'eigen','koopy' , 'trajectron']
     colors = [ 'brown','violet','green', 'red','blue']
     #labels = ['Linear', 'Trajectron++', 'EigenTrajectory + STGCNN', 'Koopman']
     #labels = ['Linear', 'GP','EigenTrajectory + STGCNN','Koopman+ 8 history','Trajectron++','Trajectron++ 20']

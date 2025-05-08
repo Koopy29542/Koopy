@@ -13,7 +13,7 @@ import multiprocessing
 video_dir = '../videos/compare/test'
 
 def datasaver(test_dirpath, n_pedestrians, map_size, bg_img_path):
-    models = ['linear', 'gp', 'eigen','mul' , 'trajectron']
+    models = ['linear', 'gp', 'eigen','koopy' , 'trajectron']
     colors = [ 'brown','violet','green', 'red','blue']
 
     for file in os.listdir(test_dirpath):

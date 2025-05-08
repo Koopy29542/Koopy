@@ -23,7 +23,7 @@ def main():
                 if re.match(i, file):
                     #filepath_to_load = os.path.join(dirpath, file)
                     name, _ = os.path.splitext(file)
-                    filepath_to_save_predictions = os.path.join(dirpath, name + '_mul_predictions.npy')
+                    filepath_to_save_predictions = os.path.join(dirpath, name + '_koopy_predictions.npy')
                     filepath_to_save_targets = os.path.join(dirpath, name + '_targets.npy')
                 # data = np.load(filepath_to_load)
                 # time_steps, n_pedestrians, _ = data.shape
