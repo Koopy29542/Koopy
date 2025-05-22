@@ -47,3 +47,6 @@ For comparison of ADE/FDE with video: Refer to compare_preditions_{dataset}
 Control performance metrics: acp_mpc_ethucy_statistics.py
 Videos for conformal predictions: conformal_prediction_navi_{datasets}
 
+*EACP-MPC
+Another control performance metric: run_eacp_mpc_ethucy.py
+Videos for conformal predictions: conformal_prediction_navi_{datasets}
