@@ -3,8 +3,8 @@ import numpy as np
 import os
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle, Circle, Polygon
-from score_functions import stepwise_displacement_error
-from visualization_utils import draw_map2, visualize_tracking_result, visualize_prediction_result, visualize_controller_info
+from utils.score_functions import stepwise_displacement_error
+from utils.visualization_utils import draw_map2, visualize_tracking_result, visualize_prediction_result, visualize_controller_info
 from env import Environment
 # from control.sampling_based_mpc import SamplingBasedMPC  # 사용하지 않음
 from control.eacp_mpc_new import EgocentricACPMPC  # grid_solver.py 대신 사용
